@@ -83,13 +83,13 @@ class PostingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Validasi
         $rules=[
-
-            'caption'=>'required',
+            'caption'=>'required|max:250',
         ];
-
+        //akan muncul pesan jika kosong
         $pesan=[
-            'caption.required'=>'Nama Tidak Boleh Kosong!!',
+            'caption.required'=>'Caption Tidak Boleh Kosong!!',
         ];
 
 
@@ -129,6 +129,7 @@ class PostingController extends Controller
      */
     public function destroy($id)
     {
+        //untuk melakukan hapus data
         $posting=\App\posting::find($id);
         $posting->delete();
 
