@@ -46,7 +46,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{URL::to('admin/posting')}}" class="nav-link">
+            <a href="{{URL::to('admin/profil')}}" class="nav-link">
               <i class="nav-icon fa fa-book"></i>
               <p>
                 Profil

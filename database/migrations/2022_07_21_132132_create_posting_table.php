@@ -13,11 +13,13 @@ class CreatePostingTable extends Migration
      */
     public function up()
     {
+        //membuat tabel
         Schema::create('posting', function (Blueprint $table) {
             $table->bigIncrements('idcaption');
             $table->string('caption');
             $table->string('file');
-            $table->text('image');
+            $table->string('gambar');
+            $table->timestamps();
         });
     }
 

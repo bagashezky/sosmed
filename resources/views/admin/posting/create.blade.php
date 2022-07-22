@@ -25,12 +25,12 @@
 
 
                                 <div class="form-group">
-                                    {{ Form::label('image', 'file') }}
-                                    {{ Form::file('imageFile', ['class'=>'form-control']) }}
+                                    {{ Form::label('file', 'file') }}
+                                    {{ Form::file('file', ['class'=>'form-control']) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ Form::label('image', 'Gambar') }}
-                                    {{ Form::file('imageFile', ['class'=>'form-control']) }}
+                                    {{ Form::label('image', 'gambar') }}
+                                    {{ Form::file('image', ['class'=>'form-control']) }}
                                 </div>
                             </div>
                         </div>

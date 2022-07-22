@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\posting;
 
 class PostingController extends Controller
 {
@@ -24,6 +25,7 @@ class PostingController extends Controller
      */
     public function create()
     {
+        //refresh halaman
         return view('admin.posting.create');
     }
 
@@ -35,45 +37,14 @@ class PostingController extends Controller
      */
     public function store(Request $request)
     {
-        $rules =[
-            'name'=>'required',
-            'category_id'=>'required',
-            'price'=>'required|integer',
+        //validasi data seperti caption maximal 250
+        $validatedData = $request->validate([
+            'caption' => 'required|max:250',
+        ]);
+        //memasukan data ke database melalui model
+        $posting = Posting::create($validatedData);
 
-        ];
-
-        $pesan=[
-            'name.required'=>'Nama Barang Tidak Boleh Kosong',
-            'category_id'=>'Kategori tidak boleh Kosong',
-            'price.required'=>'Harga Barang Tidak Boleh Kosong',
-            'imageFile.required'=>'Gambar Tidak Boleh Kosong',
-            'qty.required'=>'Jumlah Stok Tidak Boleh Kosong'
-        ];
-
-        $validator=Validator::make(Input::all(),$rules,$pesan);
-        //jika data ada yang kosong
-        if ($validator->fails()) {
-            //refresh halaman
-            return Redirect::to('admin/posting/create')
-            ->withErrors($validator);
-
-        }else{
-
-            $image=$request->file('imageFile')->store('productImages','public');
-
-            $product=new \App\Product;
-
-            $product->name=Input::get('name');
-            $product->category_id=Input::get('category_id');
-            $product->qty=Input::get('qty');
-            $product->price=Input::get('price');
-            $product->image=$image;
-            $product->save();
-
-            Session::flash('message','Berhasil Ditambah');
-
-            return redirect::to('admin/product');
-        }
+        return redirect('/admin/posting')->with('success', 'Caption is successfully saved');
     }
 
     /**

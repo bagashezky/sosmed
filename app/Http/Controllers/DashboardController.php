@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\posting;
 
 class DashboardController extends Controller
 {
@@ -13,7 +14,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+
+        //untuk mengambil data dari database Posting
+        $postings=\App\posting::all();
+        $data=['posting'=>$postings];
+        //untuk kembali ke menu dashboard
+        return view('admin.dashboard.index')->with($data);
     }
 
     /**
