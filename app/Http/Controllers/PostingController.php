@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use App\posting;
 
 class PostingController extends Controller
@@ -44,7 +47,7 @@ class PostingController extends Controller
         //memasukan data ke database melalui model
         $posting = Posting::create($validatedData);
 
-        return redirect('/admin/posting')->with('success', 'Caption is successfully saved');
+        return redirect('/admin/dashboard')->with('success', 'Caption is successfully saved');
     }
 
     /**
@@ -66,7 +69,9 @@ class PostingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posting = posting::findOrFail($id);
+
+        return view('admin.posting.edit', compact('posting'));
     }
 
     /**
@@ -78,7 +83,42 @@ class PostingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules=[
+
+            'caption'=>'required',
+        ];
+
+        $pesan=[
+            'caption.required'=>'Nama Tidak Boleh Kosong!!',
+        ];
+
+
+        $validator=Validator::make(Input::all(),$rules,$pesan);
+
+        if ($validator->fails()) {
+            return Redirect::to('admin/posting/'.$id.'/edit')
+            ->withErrors($validator);
+
+        }else{
+
+            $image="";
+
+            if (!$request->file('imageFile')) {
+                # code...
+                $image=Input::get('imagePath');
+            }else{
+                $image=$request->file('imageFile')->store('categoryImages','public');
+            }
+
+            $posting=\App\posting::find($id);
+
+            $posting->caption=Input::get('caption');
+            $posting->save();
+
+            Session::flash('message','Data Barang Berhasil Diubah');
+
+            return Redirect::to('admin/dashboard');
+        }
     }
 
     /**

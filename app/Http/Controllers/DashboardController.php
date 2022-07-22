@@ -62,7 +62,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -74,7 +74,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

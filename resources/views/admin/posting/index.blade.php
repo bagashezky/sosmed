@@ -58,7 +58,7 @@
 
                             </div>
                             <div  class="card-footer">
-                                <a href="{{ URL::to('admin') }}"  class="btn btn-outline-info">Kembali</a>
+                                <a href="{{ URL::to('admin/dashboard') }}"  class="btn btn-outline-info">Kembali</a>
                                 {{ Form::submit('kirim', ['class' => 'btn btn-primary pull-right']) }}
                             </div>
                         </div>

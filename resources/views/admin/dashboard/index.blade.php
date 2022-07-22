@@ -78,8 +78,9 @@
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">Delete</button>
-
+                            <a href="{{ route('posting.edit',$posting->id)}}" class="btn btn-primary">Edit</a>
                         </form>
+
 
 
                       </span>
