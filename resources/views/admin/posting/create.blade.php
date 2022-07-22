@@ -19,7 +19,6 @@
                                     {{ Form::label('caption', 'caption') }}
                                     {{ Form::textarea('caption', '', ['class'=>'form-control', 'placeholder'=>'Enter caption', 'rows'=>5]) }}
                                 </div>
-
                             </div>
                             <div class="col-md-6">
 
