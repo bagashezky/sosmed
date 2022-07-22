@@ -85,6 +85,9 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postings = posting::findOrFail($id);
+        $postings->delete();
+
+        return redirect('/admin/dashboard')->with('success', 'Book is successfully deleted');
     }
 }

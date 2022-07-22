@@ -14,7 +14,7 @@ class PostingController extends Controller
      */
     public function index()
     {
-
+        //refresh halaman
         return view('admin.posting.index');
     }
 
@@ -89,6 +89,10 @@ class PostingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $posting=\App\posting::find($id);
+        $posting->delete();
+
+        Session::flash('message','Berhasil Dihapus');
+        return Redirect::to('admin/dashboard');
     }
 }

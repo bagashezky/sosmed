@@ -63,26 +63,33 @@
             <div class="card-body">
               <div class="tab-content">
                 <div class="active tab-pane" id="activity">
+
+
                   <!-- Post -->
+                  @foreach($posting as $posting)
                   <div class="post">
                     <div class="user-block">
                       <img class="img-circle img-bordered-sm" src="{{ asset('lte1/dist/img/foto.jpg')}}" alt="user image">
                       <span class="username">
                         <a href="#">Bagas Pratama</a>
-                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                        <td class="text-center">
+
+                        <form action="{{ route('dashboard.destroy', $posting->id)}}" method="post" class="float-right btn-tol">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Delete</button>
+
+                        </form>
+
+
                       </span>
                       <span class="description">Shared publicly - 7:30 PM today</span>
                     </div>
                     <!-- /.user-block -->
                     <!--Untuk mengambil data dari database melalui controller yang berbeda -->
                     <p>
-                      @foreach($posting as $posting)
-                      <tr>
-                          <td>{{$posting->caption}}</td>
-                      </tr>
-                      @endforeach
+                          {{$posting->caption}}
                     </p>
-
                     <p>
                       <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
                       <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
@@ -95,6 +102,7 @@
 
                     <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
                   </div>
+                  @endforeach
                   <!-- /.post -->
 
                   <!-- Post -->
