@@ -98,10 +98,27 @@
                         <a href="#" class="link-black text-sm">
                           <i class="far fa-comments mr-1"></i> Comments (5)
                         </a>
+                        <div class="card-footer card-comments">
+                        <div class="card-comment">
+                            <!-- User image -->
+                            <img class="img-circle img-sm" src="{{ asset('lte1/dist/img/user4-128x128.jpg')}}" alt="User Image">
+
+                            <div class="comment-text">
+                              <span class="username">
+                                Agus
+                                <span class="text-muted float-right">8:03 PM Today</span>
+                              </span><!-- /.username -->
+                            <div></div>
+                              Tidak Liburan?
+                            </div>
+                            <!-- /.comment-text -->
+                          </div>
+                        </div>
                       </span>
                     </p>
 
                     <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+
                   </div>
                   @endforeach
                   <!-- /.post -->
