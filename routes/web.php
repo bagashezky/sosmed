@@ -24,3 +24,4 @@ Route::get('/admin/posting', 'PostingController@index');
 Route::resource('/admin/posting', 'PostingController');
 Route::resource('/admin/dashboard', 'DashboardController');
 Route::resource('/admin/profil', 'ProfilController');
+

@@ -15,7 +15,7 @@ class CreatePostingTable extends Migration
     {
         //membuat tabel
         Schema::create('posting', function (Blueprint $table) {
-            $table->bigIncrements('idcaption');
+            $table->bigIncrements('id');
             $table->string('caption');
             $table->string('file');
             $table->string('gambar');
